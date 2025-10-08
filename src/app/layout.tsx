@@ -19,8 +19,11 @@ const poppinsFont = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Adhikti Foundation",
+  title: "Adhikti Foundation - Indonesian Mental Healthcare Organization",
   description: "Indonesian Mental Healthcare Foundation",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
