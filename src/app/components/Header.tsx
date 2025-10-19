@@ -28,11 +28,11 @@ export default function Header() {
           <p className="my-5 text-xl">
             Bebaskan Anak dan Remaja Indonesia dari Masalah Kesehatan Jiwa
           </p>
-          <div className="flex gap-5">
-            <Button className="rounded-full p-5 bg-blue-500 hover:bg-blue-600 cursor-pointer">
+          <div className="flex gap-5 mt-10 ">
+            <Button className="rounded-md font-light  py-5 px-8 bg-blue-500 hover:bg-blue-600 cursor-pointer text-lg">
               Konsultasi
             </Button>
-            <Button className="rounded-full p-5 bg-blue-500 hover:bg-blue-600 cursor-pointer">
+            <Button className="rounded-md font-light py-5 px-8 bg-blue-500 hover:bg-blue-600 cursor-pointer text-lg">
               Ikut Bergabung
             </Button>
           </div>
