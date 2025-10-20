@@ -37,18 +37,24 @@ const navMenu = [
     subMenu: [
       {
         id: 1,
+        subName: "KidPedia for Kids",
+        href: "#",
+        description: "Website Interaktif untuk Anak dan Orang Tua",
+      },
+      {
+        id: 2,
+        subName: "Pelita Jiwa",
+        href: "#",
+        description: "Website Alternatif Layanan Konsultasi",
+      },
+      {
+        id: 3,
         subName: "Adhitizens",
         href: "#",
         description: "Berkenalan lebih dekat dengan anggota kami",
       },
       {
-        id: 2,
-        subName: "Sahabat Adhikti",
-        href: "#",
-        description: "Support System dan Donatur kami",
-      },
-      {
-        id: 3,
+        id: 4,
         subName: "Dokumen Hukum",
         href: "#",
         description: "Dokumen dan kebijakan organisasi",
@@ -74,7 +80,10 @@ export default function DesktopNavbar({ className }: IDesktopNavbar) {
               <NavigationMenuItem key={idx} className="p-2">
                 {!menu.subMenu ? (
                   <NavigationMenuLink asChild className="text-[16px]">
-                    <Link href={menu.href}> {menu.name}</Link>
+                    <Link href={menu.href} target="blank">
+                      {" "}
+                      {menu.name}
+                    </Link>
                   </NavigationMenuLink>
                 ) : (
                   <>
@@ -88,6 +97,7 @@ export default function DesktopNavbar({ className }: IDesktopNavbar) {
                             <NavigationMenuLink asChild>
                               <Link
                                 href={sub.href}
+                                target="blank"
                                 className="block rounded-md p-1 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                               >
                                 <div className="text-[16px] font-medium text-foreground">
@@ -112,8 +122,8 @@ export default function DesktopNavbar({ className }: IDesktopNavbar) {
         </NavigationMenu>
       </div>
       <div id="cta">
-        <Button className="bg-blue-600 hover:bg-blue-700 cursor-pointer rounded-full p-5 shadow-sm flex justify-between">
-          <HandCoins />
+        <Button className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-full p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex justify-between gap-2 text-white font-semibold">
+          <HandCoins className="w-5 h-5" />
           Mulai Berdonasi
         </Button>
       </div>
