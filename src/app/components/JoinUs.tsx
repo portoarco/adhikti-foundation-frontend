@@ -1,7 +1,9 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Check, Users } from "lucide-react";
+import { motion } from "motion/react";
 
 const benefits = [
   {
@@ -52,14 +54,22 @@ export default function JoinUs() {
           <h1 className="text-3xl  font-medium  text-gray-800  mb-5">
             Apa yang kamu dapatkan?
           </h1>
-          <div className="grid grid-cols-2 gap-5 ">
+          <div className="grid grid-cols-2 gap-4">
             {benefits.map((b, idx) => (
-              <Card key={idx} className="w-full  py-4">
-                <CardContent className="flex gap-x-4 items-center">
-                  {b.icon}
-                  <p className="w-full font-medium">{b.desc}</p>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="py-4 bg-white/70 border-teal-100 shadow-md hover:shadow-lg transition-all">
+                  <CardContent className="flex gap-3 items-center">
+                    <div className="p-2 bg-teal-100 rounded-full">
+                      <Check className="size-5 text-teal-600" />
+                    </div>
+                    <p className="font-medium text-gray-700">{b.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>

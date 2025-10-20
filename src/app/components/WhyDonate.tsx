@@ -1,51 +1,73 @@
+"use client";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Hospital, School, Users } from "lucide-react";
+import { motion } from "motion/react";
 
 const donateReasons = [
   {
     id: 1,
     icon: (
-      <School className="bg-red-500  size-12 text-white p-2 rounded-full" />
+      <School className="bg-teal-500 size-14 text-white p-3 rounded-full shadow-md" />
     ),
     title: "Pengembangan Kegiatan Edukatif",
-    desc: "Membantu kegiatan penyuluhan, pelatihan, pendampingan masyarakat di lapangan maupun  edukasi melalui media sosial",
+    desc: "Mendukung penyuluhan, pelatihan, dan edukasi masyarakat baik di lapangan maupun melalui media sosial untuk meningkatkan kesadaran akan kesehatan jiwa.",
   },
   {
     id: 2,
     icon: (
-      <Hospital className="bg-red-500  size-12 text-white p-2 rounded-full" />
+      <Hospital className="bg-teal-500 size-14 text-white p-3 rounded-full shadow-md" />
     ),
     title: "Pusat Layanan dan Rujukan",
-    desc: "Membantu pengembangan pusat layanan pengaduan dalam upaya pencegahan, deteksi dini maupun bantuan untuk layanan rujukan yang dibutuhkan",
+    desc: "Berperan dalam pengembangan pusat layanan pengaduan dan rujukan bagi masyarakat yang membutuhkan bantuan profesional atau dukungan kesehatan jiwa.",
   },
-
   {
     id: 3,
-    icon: <Users className="bg-red-500  size-12 text-white p-2 rounded-full" />,
+    icon: (
+      <Users className="bg-teal-500 size-14 text-white p-3 rounded-full shadow-md" />
+    ),
     title: "Pengembangan SDM dan Kemitraan",
-    desc: "Membantu pengembangan SDM lokal dalam pencegahan, deteksi dini, dan membangun kemitraan dengan jaringan layanan rujukan secara mandiri",
+    desc: "Mendorong pengembangan SDM lokal dan membangun kemitraan yang berkelanjutan dengan jaringan layanan rujukan di berbagai daerah.",
   },
 ];
 
 export default function WhyDonate() {
   return (
-    <section>
-      <h1 className="text-3xl md:text-4xl font-semibold pb-10 text-gray-800">
-        Mengapa Donasimu Sangat Berharga?
-      </h1>
-      <div className="grid grid-cols-3 gap-5">
+    <section className="py-20">
+      <div className="text-center mb-14 space-y-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+          Mengapa Donasimu Sangat Berharga?
+        </h1>
+        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          Setiap kontribusi kamu membantu memperluas dampak positif bagi anak
+          dan remaja Indonesia dalam membangun masa depan yang sehat secara
+          mental dan sosial.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {donateReasons.map((reason, idx) => (
-          <Card key={idx}>
-            <CardContent>
-              <CardHeader className="p-0">
-                <div className="flex flex-col items-center gap-5">
-                  {reason.icon}
-                  <h2 className="text-2xl font-semibold">{reason.title}</h2>
-                </div>
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: idx * 0.2 }}
+            viewport={{ once: true }}
+          >
+            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden bg-gradient-to-b from-white to-teal-50/50 h-90 inset-shadow-2xs flex flex-col justify-center">
+              <CardHeader className=" flex flex-col items-center gap-5 ">
+                {reason.icon}
+                <h2 className="text-2xl font-semibold text-gray-900 text-center">
+                  {reason.title}
+                </h2>
               </CardHeader>
-              <p className="text-center text-base">{reason.desc}</p>
-            </CardContent>
-          </Card>
+              <CardContent className="pb-3 px-6">
+                <p className="text-center text-gray-700 leading-relaxed text-base">
+                  {reason.desc}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </section>

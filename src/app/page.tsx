@@ -25,7 +25,7 @@ export default function Home() {
       <Header />
       {/*  */}
       <main className="">
-        <section id="about-us">
+        <section id="about-us" className="py-30">
           <AboutUs />
         </section>
         <section className="pt-10 px-30 ">
