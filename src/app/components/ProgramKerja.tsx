@@ -67,16 +67,16 @@ export default function ProgramKerja() {
   );
 
   return (
-    <section>
-      <section>
-        <h1 className="text-3xl md:text-4xl font-semibold  text-gray-800">
-          Program Kerja dan Kegiatan
+    <section id="activity">
+      <div className="text-center mb-12">
+        <h1 className="text-3xl md:text-4xl font-semibold text-teal-800">
+          Program Kerja & Kegiatan
         </h1>
-        <p className=" text-gray-500 mt-4 text-base md:text-xl  ">
+        <p className="text-gray-600 mt-4 text-base md:text-lg max-w-3xl mx-auto">
           Berbagai program kerja dan aksi nyata Adhikti Foundation sebagai wujud
-          pengabdian konkret pada masyarakat
+          pengabdian konkret pada masyarakat.
         </p>
-      </section>
+      </div>
       <section id="photo-carousel" className="pt-10 pb-15 relative ">
         <Carousel
           plugins={[plugin.current]}
@@ -84,7 +84,7 @@ export default function ProgramKerja() {
             align: "center",
             loop: true,
           }}
-          className="w-full"
+          className="w-full  cursor-grab active:cursor-grabbing"
           onMouseEnter={() => plugin.current.stop()}
           onMouseLeave={() => plugin.current.play()}
         >

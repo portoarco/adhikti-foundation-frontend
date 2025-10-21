@@ -3,8 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Footprints, HandCoins } from "lucide-react";
+import DonateDialog from "./DonateDialog";
+import { useState } from "react";
 
 export default function BannerCTA() {
+  const [openDonate, setOpenDonate] = useState(false);
+
   return (
     <section className="relative overflow-hidden py-24 px-6 sm:px-10 md:px-16 lg:px-24 bg-gradient-to-br from-teal-100 via-white to-teal-10 ">
       {/* Background glow effects */}
@@ -42,9 +46,12 @@ export default function BannerCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           viewport={{ once: true }}
-          className="flex flex-col sm:flex-row justify-center gap-5 mt-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-4"
         >
-          <Button className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white text-lg font-medium px-10 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+          <Button
+            className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white text-lg font-medium px-10 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+            onClick={() => setOpenDonate(true)}
+          >
             <HandCoins /> Mulai Berdonasi
           </Button>
           <Button
@@ -55,6 +62,9 @@ export default function BannerCTA() {
           </Button>
         </motion.div>
       </div>
+
+      {/* Donate Dialog */}
+      <DonateDialog open={openDonate} setOpen={setOpenDonate} />
     </section>
   );
 }

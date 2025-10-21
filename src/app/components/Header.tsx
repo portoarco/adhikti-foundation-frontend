@@ -5,7 +5,7 @@ import {
   Footprints,
   HandCoins,
   Haze,
-  Headset,
+  HeartHandshake,
   UserStar,
 } from "lucide-react";
 import Image from "next/image";
@@ -35,9 +35,9 @@ function CountUp({ end, duration = 1500 }: { end: number; duration?: number }) {
 
 export default function Header() {
   return (
-    <header>
+    <header className="mb-15">
       <div className="relative">
-        <div className="relative -z-10 mt-10 h-130 rounded-3xl mx-auto w-[95vw] shadow-xl inset-shadow-2xs overflow-hidden">
+        <div className="relative -z-10 md:mt-10 h-130 md:rounded-3xl mx-auto md:w-[95vw] shadow-xl inset-shadow-2xs overflow-hidden">
           <Image
             src="/assets/hero.jpg"
             alt="hero"
@@ -53,17 +53,17 @@ export default function Header() {
         </div>
         <div
           id="header-title"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-center w-full px-4"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-center w-full px-2 md:px-4"
         >
-          <h1 className="text-5xl md:text-6xl lg:text-8xl font-extrabold  text-balance text-shadow-lg/30   ">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold  text-balance text-shadow-lg/30   ">
             ADHIKTI FOUNDATION
           </h1>
-          <p className="my-5 text-lg md:text-2xl text-slate-100">
+          <p className="my-5 text-[13px] md:text-2xl text-slate-100">
             Bebaskan Anak dan Remaja Indonesia dari Masalah Kesehatan Jiwa
           </p>
           <div className="flex gap-4 md:gap-5 mt-10 justify-center flex-wrap">
             <Button className="rounded-lg font-medium py-6 px-6 md:px-8 bg-teal-600 hover:bg-teal-700 text-white text-base md:text-lg transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 cursor-pointer">
-              <Headset className="size-5" /> Hubungi Konselor
+              <HeartHandshake className="size-5" /> Hubungi Konselor
             </Button>
             <Button className="rounded-lg font-medium py-6 px-6 md:px-8 bg-amber-600 hover:bg-amber-700 text-white text-base md:text-lg transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 cursor-pointer">
               <Footprints className="size-5" /> Ikut Berkarya
@@ -71,38 +71,46 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <div className="relative w-full md:w-[90vw] lg:w-[80vw] mx-auto -top-12 md:-top-16 bg-white p-6 md:p-8 rounded-xl shadow-xl border border-slate-100">
-        <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {/* Statistik  */}
+      <div className="relative w-[92vw] sm:w-[85vw] md:w-[90vw] lg:w-[90vw] mx-auto -mt-18 md:-mt-16 bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-xl border border-slate-100">
+        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {/* Penerima Manfaat */}
           <li className="flex flex-col text-center">
-            <p className="text-4xl md:text-5xl font-bold text-teal-600">
+            <p className="text-xl sm:text-3xl md:text-4xl xl:text-5xl  font-bold text-teal-600">
               <CountUp end={100} />+
             </p>
-            <p className="text-sm md:text-base text-slate-600 mt-5 flex items-center justify-center gap-3">
-              <Haze /> Penerima Manfaat
+            <p className="text-[10px] sm:text-sm md:text-base text-slate-600 mt-3 sm:mt-5 flex items-center justify-center gap-2">
+              <Haze className="w-4 h-4" /> Penerima Manfaat
             </p>
           </li>
+
+          {/* Program Terlaksana */}
           <li className="flex flex-col text-center">
-            <p className="text-4xl md:text-5xl font-bold text-teal-600">
+            <p className="text-xl sm:text-3xl md:text-4xl xl:text-5xl  font-bold text-teal-600">
               <CountUp end={10} />+
             </p>
-            <p className="text-sm md:text-base text-slate-600 mt-5 flex items-center justify-center gap-3">
-              <CircleCheckBig /> Program Terlaksana
+            <p className="text-[10px] sm:text-sm md:text-base text-slate-600 mt-3 sm:mt-5 flex items-center justify-center gap-2">
+              <CircleCheckBig className="w-4 h-4" /> Program Terlaksana
             </p>
           </li>
+
+          {/* Donasi Terkumpul */}
           <li className="flex flex-col text-center">
-            <p className="text-4xl md:text-5xl font-bold text-teal-600">
-              Rp <CountUp end={30000000} />
+            <p className="text-xl sm:text-3xl md:text-4xl xl:text-5xl  font-bold text-teal-600">
+              <CountUp end={30000000} />
             </p>
-            <p className="text-sm md:text-base text-slate-600 mt-5 flex items-center justify-center gap-3">
-              <HandCoins /> Donasi Terkumpul
+            <p className="text-[10px] sm:text-sm md:text-base text-slate-600 mt-3 sm:mt-5 flex items-center justify-center gap-2">
+              <HandCoins className="w-4 h-4" /> Donasi Terkumpul
             </p>
           </li>
+
+          {/* Anggota Aktif */}
           <li className="flex flex-col text-center">
-            <p className="text-4xl md:text-5xl font-bold text-teal-600">
+            <p className="text-xl sm:text-3xl md:text-4xl xl:text-5xl  font-bold text-teal-600">
               <CountUp end={10} />+
             </p>
-            <p className="text-sm md:text-base text-slate-600 mt-5 flex items-center justify-center gap-3">
-              <UserStar /> Anggota Aktif
+            <p className="text-[10px] sm:text-sm md:text-base text-slate-600 mt-3 sm:mt-5 flex items-center justify-center gap-2">
+              <UserStar className="w-4 h-4" /> Anggota Aktif
             </p>
           </li>
         </ul>

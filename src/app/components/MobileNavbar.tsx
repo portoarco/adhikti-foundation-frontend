@@ -1,9 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, HandCoins } from "lucide-react";
+import { Menu, X, ChevronDown, HandCoins, LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import DonateDialog from "./DonateDialog";
 
 interface IMobileNavbar {
   className?: string;
@@ -13,17 +14,17 @@ const navMenu = [
   {
     id: 1,
     name: "Tentang Kami",
-    href: "#",
+    href: "#about-us",
   },
   {
     id: 2,
     name: "Kegiatan",
-    href: "#",
+    href: "#activity",
   },
   {
     id: 3,
     name: "Artikel",
-    href: "#",
+    href: "#impact-story",
   },
   {
     id: 4,
@@ -32,13 +33,13 @@ const navMenu = [
       {
         id: 1,
         subName: "KidPedia for Kids",
-        href: "#",
+        href: "https://kidpedia.my.id/",
         description: "Website Interaktif untuk Anak dan Orang Tua",
       },
       {
         id: 2,
         subName: "Pelita Jiwa",
-        href: "#",
+        href: "http://pelitajiwa.my.id/",
         description: "Website Alternatif Layanan Konsultasi",
       },
       {
@@ -59,6 +60,7 @@ const navMenu = [
 
 export default function MobileNavbar({ className }: IMobileNavbar) {
   const [open, setOpen] = useState(false);
+  const [openDonate, setOpenDonate] = useState(false);
   const [expandedSubmenu, setExpandedSubmenu] = useState<number | null>(null);
 
   const toggleSubmenu = (id: number) => {
@@ -96,7 +98,6 @@ export default function MobileNavbar({ className }: IMobileNavbar) {
                 {!menu.subMenu ? (
                   <Link
                     href={menu.href}
-                    target="blank"
                     className="block px-4 py-2 rounded-lg text-foreground font-medium transition-all duration-300 hover:bg-teal-100 hover:text-teal-700 hover:pl-6 active:bg-teal-200"
                   >
                     {menu.name}
@@ -138,15 +139,23 @@ export default function MobileNavbar({ className }: IMobileNavbar) {
               </div>
             ))}
 
-            <div className="pt-4 border-t border-blue-200 mt-4">
-              <Button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-lg p-3 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 flex justify-center gap-2 text-white font-semibold">
+            <div className="pt-4 border-t border-blue-200 mt-4 flex flex-col gap-3">
+              <Button
+                className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-lg p-3 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 flex justify-center gap-2 text-white font-semibold"
+                onClick={() => setOpenDonate(true)}
+              >
                 <HandCoins className="w-5 h-5" />
                 Mulai Berdonasi
+              </Button>
+              <Button className="w-full bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 cursor-pointer rounded-lg p-3 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 flex justify-center gap-2 text-white font-semibold">
+                <LogIn className="w-5 h-5" /> Login/Register
               </Button>
             </div>
           </div>
         </section>
       )}
+      {/* Donate Dialog */}
+      <DonateDialog open={openDonate} setOpen={setOpenDonate} />
     </>
   );
 }

@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -7,9 +8,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { HandCoins } from "lucide-react";
+import { HandCoins, LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import DonateDialog from "./DonateDialog";
 
 interface IDesktopNavbar {
   className?: string;
@@ -19,17 +22,17 @@ const navMenu = [
   {
     id: 1,
     name: "Tentang Kami",
-    href: "#",
+    href: "#about-us",
   },
   {
     id: 2,
     name: "Kegiatan",
-    href: "#",
+    href: "#activity",
   },
   {
     id: 3,
     name: "Artikel",
-    href: "#",
+    href: "#impact-story",
   },
   {
     id: 4,
@@ -38,13 +41,13 @@ const navMenu = [
       {
         id: 1,
         subName: "KidPedia for Kids",
-        href: "#",
+        href: "https://kidpedia.my.id/",
         description: "Website Interaktif untuk Anak dan Orang Tua",
       },
       {
         id: 2,
         subName: "Pelita Jiwa",
-        href: "#",
+        href: "http://pelitajiwa.my.id/",
         description: "Website Alternatif Layanan Konsultasi",
       },
       {
@@ -64,9 +67,10 @@ const navMenu = [
 ];
 
 export default function DesktopNavbar({ className }: IDesktopNavbar) {
+  const [openDonate, setOpenDonate] = useState(false);
   return (
     <nav
-      className={`${className} flex items-center justify-center gap-100 py-2`}
+      className={`${className} flex items-center justify-center gap-10 xl:justify-around py-2 `}
     >
       <div id="image">
         <Link href="/">
@@ -80,17 +84,14 @@ export default function DesktopNavbar({ className }: IDesktopNavbar) {
               <NavigationMenuItem key={idx} className="p-2">
                 {!menu.subMenu ? (
                   <NavigationMenuLink asChild className="text-[16px]">
-                    <Link href={menu.href} target="blank">
-                      {" "}
-                      {menu.name}
-                    </Link>
+                    <Link href={menu.href}> {menu.name}</Link>
                   </NavigationMenuLink>
                 ) : (
                   <>
                     <NavigationMenuTrigger className="font-normal text-[16px]">
                       {menu.name}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="absolute z-10">
+                    <NavigationMenuContent className="absolute z-[99]">
                       <ul className="grid w-[300px] gap-1 p-1" role="list">
                         {menu.subMenu.map((sub) => (
                           <li key={sub.id}>
@@ -121,12 +122,22 @@ export default function DesktopNavbar({ className }: IDesktopNavbar) {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-      <div id="cta">
-        <Button className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-full p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex justify-between gap-2 text-white font-semibold">
+      <div id="cta" className="flex items-center gap-5">
+        <Button
+          className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-full p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex justify-between gap-2 text-white font-semibold"
+          onClick={() => setOpenDonate(true)}
+        >
           <HandCoins className="w-5 h-5" />
           Mulai Berdonasi
         </Button>
+
+        <Button className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-full p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex justify-between gap-2 text-white font-semibold">
+          <LogIn className="w-5 h-5" />
+          Login/Register
+        </Button>
       </div>
+      {/* Donate Dialog */}
+      <DonateDialog open={openDonate} setOpen={setOpenDonate} />
     </nav>
   );
 }

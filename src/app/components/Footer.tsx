@@ -5,13 +5,13 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-blue-50 via-slate-50 to-amber-50 text-slate-900 border-t-4 border-teal-600">
-      {/* MAIN SECTION */}
-      <section className="px-8 md:px-20 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+      {/* Main Section */}
+      <section className="px-6 md:px-16 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Identity */}
         <div id="identity">
           <Image
             src="/logo.png"
-            alt="Logo Yayasan Adhirajasa Kusuma Bakti"
+            alt="Logo Adhikti Foundation"
             width={90}
             height={90}
             className="rounded-md mb-4"
@@ -23,7 +23,7 @@ export default function Footer() {
             Jl. Waru No. 20A, Rawamangun, Jakarta Timur, DKI Jakarta
           </p>
 
-          {/* Ikon Sosial */}
+          {/* Social Icons */}
           <div className="flex items-center gap-3 mt-5">
             <SocialIcon
               href="mailto:adhiktifoundation@gmail.com"
@@ -50,10 +50,7 @@ export default function Footer() {
 
         {/* Pages */}
         <div id="pages" className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-            <span className="w-1 h-6 bg-teal-600 rounded-full" />
-            Halaman
-          </h2>
+          <SectionTitle title="Halaman" />
           <FooterLink href="/tentang">Tentang Kami</FooterLink>
           <FooterLink href="/kegiatan">Kegiatan</FooterLink>
           <FooterLink href="/artikel">Artikel</FooterLink>
@@ -63,10 +60,7 @@ export default function Footer() {
 
         {/* Community */}
         <div id="community" className="flex flex-col gap-3">
-          <h2 className="text-lg font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-            <span className="w-1 h-6 bg-teal-600 rounded-full" />
-            Komunitas
-          </h2>
+          <SectionTitle title="Komunitas" />
           <FooterLink href="/komunitas/kidpedia">KidPedia</FooterLink>
           <FooterLink href="/komunitas/pelitajiwa">Pelita Jiwa</FooterLink>
           <FooterLink href="/komunitas/adhitizens">Adhitizens</FooterLink>
@@ -75,15 +69,13 @@ export default function Footer() {
 
         {/* Location */}
         <div id="location">
-          <h2 className="text-lg font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-            <span className="w-1 h-6 bg-teal-600 rounded-full" />
-            Lokasi Kami
-          </h2>
+          <SectionTitle title="Lokasi Kami" />
           <div className="w-full overflow-hidden rounded-xl shadow-lg">
             <iframe
               className="w-full h-[240px] border-0"
               scrolling="no"
               loading="lazy"
+              title="Lokasi Yayasan Adhirajasa Kusuma Bakti"
               allowFullScreen
               src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=id&amp;q=Jl.%20Waru%20No%2020A%20Rawamangun,%20Jakarta%20Timur,%20DKI%20Jakarta+(Yayasan%20Adhirajasa%20Kusuma%20Bakti)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
             />
@@ -92,14 +84,14 @@ export default function Footer() {
       </section>
 
       {/* Divider */}
-      <hr className="border-gray-400" />
+      <hr className="border-gray-300" />
 
       {/* Bottom Bar */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-3 px-8 md:px-20 py-6 text-base text-gray-700">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-6 md:px-16 py-6 text-sm text-gray-700">
         <p className="text-center md:text-left font-medium">
           © 2025 Yayasan Adhirajasa Kusuma Bakti. All rights reserved.
         </p>
-        <div className="flex gap-8 text-base">
+        <div className="flex flex-wrap gap-6 text-sm">
           <FooterLink href="/kebijakan-privasi">Kebijakan Privasi</FooterLink>
           <FooterLink href="/kebijakan-hukum">Kebijakan Hukum</FooterLink>
         </div>
@@ -108,7 +100,7 @@ export default function Footer() {
   );
 }
 
-/* Komponen Reusable untuk Link Footer */
+/* Komponen Reusable: Footer Link */
 function FooterLink({
   href,
   children,
@@ -119,14 +111,14 @@ function FooterLink({
   return (
     <Link
       href={href}
-      className="text-slate-700 hover:text-teal-600 text-lg transition-colors duration-200 font-medium"
+      className="text-slate-700 hover:text-teal-600 transition-colors duration-200 font-medium"
     >
       {children}
     </Link>
   );
 }
 
-/* Komponen Reusable untuk Icon Sosial */
+/* Komponen Reusable: Social Icon Link */
 function SocialIcon({
   href,
   label,
@@ -140,9 +132,21 @@ function SocialIcon({
     <Link
       href={href}
       aria-label={label}
+      target="_blank"
+      rel="noopener noreferrer"
       className="p-2 rounded-lg bg-white text-slate-700 hover:bg-teal-50 hover:text-teal-600 transition-all duration-200 border border-slate-200 hover:border-teal-300 shadow-sm"
     >
       {icon}
     </Link>
+  );
+}
+
+/* Komponen Reusable: Section Title di Footer */
+function SectionTitle({ title }: { title: string }) {
+  return (
+    <h2 className="text-lg font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+      <span className="w-1 h-6 bg-teal-600 rounded-full" />
+      {title}
+    </h2>
   );
 }

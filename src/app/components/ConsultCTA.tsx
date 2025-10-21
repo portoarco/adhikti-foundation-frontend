@@ -7,7 +7,7 @@ import { CalendarCheck, Headset } from "lucide-react";
 
 export default function ConsultCTABanner() {
   return (
-    <section className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-br from-teal-50 via-white to-emerald-50 shadow-xl py-16 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10">
+    <section className="relative w-full overflow-hidden lg:rounded-3xl bg-gradient-to-br from-teal-50 via-white to-emerald-50 lg:shadow-xl py-16 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10">
       {/* Background accent glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-10 -left-10 w-72 h-72 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
@@ -22,10 +22,10 @@ export default function ConsultCTABanner() {
         viewport={{ once: true }}
         className="w-full lg:w-3/5 relative z-10 text-center lg:text-left space-y-6"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
+        <h1 className="text-4xl   xl:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
           Konsultasikan dengan Kami!
         </h1>
-        <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+        <p className="text-lg xl:text-xl text-gray-700 leading-relaxed max-w-2xl  mx-auto lg:mx-0">
           Kami menyediakan layanan konsultasi profesional untuk pelayanan,
           pendampingan, dan informasi seputar kesehatan mental dengan sepenuh
           hati. Bersama, kita bisa tumbuh dan pulih.

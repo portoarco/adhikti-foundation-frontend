@@ -5,7 +5,10 @@ import { motion } from "motion/react";
 
 export default function AboutUs() {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-stone-100 via-amber-50 to-stone-200 py-35 px-6 md:px-16 lg:px-28 shadow-lg inset-shadow-2xs ">
+    <section
+      id="about-us"
+      className="relative w-full overflow-hidden bg-gradient-to-br from-stone-100 via-amber-50 to-stone-200 py-20 px-6 md:px-16 lg:px-28 shadow-lg inset-shadow-2xs "
+    >
       {/* Subtle background glow for depth */}
       <div className="absolute -top-20 -left-20 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl opacity-60" />
       <div className="absolute -bottom-20 -right-20 w-[30rem] h-[30rem] bg-stone-300/30 rounded-full blur-3xl opacity-60" />
@@ -19,10 +22,10 @@ export default function AboutUs() {
           viewport={{ once: true }}
           className="lg:w-1/2 text-center lg:text-left"
         >
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-teal-800 mb-6 tracking-tight">
+          <h1 className="text-2xl md:text-5xl font-serif font-bold text-teal-800 mb-6 tracking-tight">
             Adhikti Foundation Organization
           </h1>
-          <p className="text-lg md:text-xl text-stone-700 leading-relaxed text-justify">
+          <p className="text-sm md:text-xl text-stone-700 leading-relaxed text-justify">
             <span className="font-semibold text-teal-700">
               Yayasan Adhirajasa Kusuma Bakti (Adhikti Foundation)
             </span>{" "}
@@ -32,7 +35,7 @@ export default function AboutUs() {
             berkembang menjadi wadah nyata dalam perjuangan sosial dan edukasi
             kesehatan mental.
           </p>
-          <p className="mt-5 text-lg md:text-xl text-stone-700 leading-relaxed text-justify">
+          <p className="mt-5 text-sm md:text-xl text-stone-700 leading-relaxed text-justify">
             Resmi berbadan hukum sejak{" "}
             <span className="font-medium text-teal-700">30 Mei 2022</span>,
             Adhikti Foundation terus berkomitmen menjadi ruang aman untuk
@@ -47,7 +50,7 @@ export default function AboutUs() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="relative w-full lg:w-1/2 h-[380px] md:h-[450px] rounded-2xl overflow-hidden shadow-2xl border border-stone-300"
+          className="relative w-full lg:w-1/2 h-[250px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl border border-stone-300"
         >
           <Image
             src="/assets/hero.jpg"
