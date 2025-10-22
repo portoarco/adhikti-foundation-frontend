@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import DonateDialog from "./DonateDialog";
+import ToolTipHover from "./ToolTipHover";
 
 interface IDesktopNavbar {
   className?: string;
@@ -131,10 +132,14 @@ export default function DesktopNavbar({ className }: IDesktopNavbar) {
           Mulai Berdonasi
         </Button>
 
-        <Button className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-full p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex justify-between gap-2 text-white font-semibold">
+        {/* Login/Register Temporary Disabled */}
+        {/* <Button
+          className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-full p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex justify-between gap-2 text-white font-semibold"
+          onClick={() => window.alert("Fitur Belum Tersedia")}
+        >
           <LogIn className="w-5 h-5" />
           Login/Register
-        </Button>
+        </Button> */}
       </div>
       {/* Donate Dialog */}
       <DonateDialog open={openDonate} setOpen={setOpenDonate} />
