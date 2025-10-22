@@ -58,7 +58,7 @@ export default function ImpactStories() {
     <section className="relative pb-20 px-6 md:px-12" id="impact-story">
       {/* Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-teal-800">
+        <h1 className="text-3xl md:text-4xl font-semibold text-teal-800">
           Our Impact Stories
         </h1>
         <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto mt-4">

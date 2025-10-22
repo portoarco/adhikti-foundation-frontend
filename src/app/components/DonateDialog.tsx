@@ -29,15 +29,9 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      {/* <DialogTrigger asChild>
-        <Button className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-full px-10 py-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex justify-between gap-2 text-white text-lg font-semibold">
-          <HandCoins className="w-5 h-5" />
-          Mulai Berdonasi
-        </Button>
-      </DialogTrigger> */}
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Informasi Donasi</DialogTitle>
+          <DialogTitle className="mb-2">Informasi Donasi</DialogTitle>
           <DialogDescription className="max-sm:hidden">
             Mohon Lengkapi Data Diri serta Metode Pembayaran yang Anda Inginkan
           </DialogDescription>
