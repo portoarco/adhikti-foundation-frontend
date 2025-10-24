@@ -9,6 +9,7 @@ import {
   UserStar,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 function CountUp({ end, duration = 1500 }: { end: number; duration?: number }) {
@@ -62,12 +63,16 @@ export default function Header() {
             Bebaskan Anak dan Remaja Indonesia dari Masalah Kesehatan Jiwa
           </p>
           <div className="flex gap-4 md:gap-5 mt-10 justify-center flex-wrap">
-            <Button className="rounded-lg font-medium py-6 px-6 md:px-8 bg-teal-600 hover:bg-teal-700 text-white text-base md:text-lg transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 cursor-pointer">
-              <HeartHandshake className="size-5" /> Hubungi Konselor
-            </Button>
-            <Button className="rounded-lg font-medium py-6 px-6 md:px-8 bg-amber-600 hover:bg-amber-700 text-white text-base md:text-lg transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 cursor-pointer">
-              <Footprints className="size-5" /> Ikut Berkarya
-            </Button>
+            <Link href="#consultation">
+              <Button className="rounded-lg font-medium py-6 px-6 md:px-8 bg-teal-600 hover:bg-teal-700 text-white text-base md:text-lg transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 cursor-pointer">
+                <HeartHandshake className="size-5" /> Hubungi Konselor
+              </Button>
+            </Link>
+            <Link href="#join-us">
+              <Button className="rounded-lg font-medium py-6 px-6 md:px-8 bg-amber-600 hover:bg-amber-700 text-white text-base md:text-lg transition-all duration-300 ease-in-out hover:shadow-lg hover:scale-105 cursor-pointer">
+                <Footprints className="size-5" /> Ikut Berkarya
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

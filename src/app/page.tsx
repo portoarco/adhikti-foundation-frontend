@@ -9,6 +9,7 @@ import ImpactStories from "./components/ImpactStories";
 import JoinUs from "./components/JoinUs";
 import MobileNavbar from "./components/MobileNavbar";
 import ProgramKerjaOrg from "./components/ProgramKerjaOrg";
+import SocialMedia from "./components/SocialMedia";
 import WhyDonate from "./components/WhyDonate";
 import WhyMove from "./components/WhyMove";
 
@@ -46,6 +47,9 @@ export default function Home() {
         </section>
         <section className="py-20 lg:px-10 xl:px-30">
           <ConsultCTABanner />
+        </section>
+        <section className="py-10 xl:px-30">
+          <SocialMedia />
         </section>
         <section className="py-10 xl:px-30">
           <FAQ />

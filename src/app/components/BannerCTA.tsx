@@ -5,12 +5,16 @@ import { motion } from "framer-motion";
 import { Footprints, HandCoins } from "lucide-react";
 import DonateDialog from "./DonateDialog";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function BannerCTA() {
   const [openDonate, setOpenDonate] = useState(false);
 
   return (
-    <section className="relative overflow-hidden py-24 px-6 sm:px-10 md:px-16 lg:px-24 bg-gradient-to-br from-teal-100 via-white to-teal-10 ">
+    <section
+      id="donation"
+      className="relative overflow-hidden py-24 px-6 sm:px-10 md:px-16 lg:px-24 bg-gradient-to-br from-teal-100 via-white to-teal-10 "
+    >
       {/* Background glow effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-teal-300/40 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
@@ -54,12 +58,14 @@ export default function BannerCTA() {
           >
             <HandCoins /> Mulai Berdonasi
           </Button>
-          <Button
-            variant="outline"
-            className="border-2 border-teal-600 text-teal-700 hover:bg-teal-50 text-lg font-medium px-10 py-6 rounded-full transition-all duration-300 cursor-pointer"
-          >
-            <Footprints /> Bergabung Bersama Kami
-          </Button>
+          <Link href="#join-us">
+            <Button
+              variant="outline"
+              className="border-2 border-teal-600 text-teal-700 hover:bg-teal-50 text-lg font-medium px-10 py-6 rounded-full transition-all duration-300 cursor-pointer"
+            >
+              <Footprints /> Bergabung Bersama Kami
+            </Button>
+          </Link>
         </motion.div>
       </div>
 

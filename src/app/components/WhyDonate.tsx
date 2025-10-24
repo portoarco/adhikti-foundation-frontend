@@ -36,7 +36,8 @@ export default function WhyDonate() {
     <section className="py-20">
       <div className="text-center mb-20  space-y-4">
         <h1 className="text-2xl md:text-5xl font-bold text-gray-900">
-          Mengapa Donasimu Sangat Berharga?
+          Mengapa Donasimu{" "}
+          <span className="text-teal-600 ">Sangat Berharga?</span>
         </h1>
         <p className="text-gray-600 max-w-2xl mx-auto text-[16px] md:text-lg">
           Setiap kontribusi kamu membantu memperluas dampak positif bagi anak

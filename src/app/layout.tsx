@@ -4,6 +4,7 @@ import "./globals.css";
 import DesktopNavbar from "./components/DesktopNavbar";
 import MobileNavbar from "./components/MobileNavbar";
 import Footer from "./components/Footer";
+import { ToastContainer, toast } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppinsFont.variable} antialiased`}
       >
+        <ToastContainer />
         <DesktopNavbar className="max-lg:hidden rounded-b-full" />
         <MobileNavbar className="lg:hidden" />
         {children}

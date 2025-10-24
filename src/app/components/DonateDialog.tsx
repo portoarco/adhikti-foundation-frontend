@@ -12,6 +12,7 @@ import ToolTipHover from "./ToolTipHover";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 interface IDonateDialog {
   open: boolean;
@@ -33,9 +34,10 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
         <DialogHeader>
           <DialogTitle className="mb-2">Informasi Donasi</DialogTitle>
           <DialogDescription className="max-sm:hidden">
-            Mohon Lengkapi Data Diri serta Metode Pembayaran yang Anda Inginkan
+            Mohon Lengkapi Informasi Berikut untuk Kepentingan Pendataan
           </DialogDescription>
-          <section id="payment-methods" className="grid   grid-cols-2 gap-2">
+          {/* Payment methods temporary inactive */}
+          {/* <section id="payment-methods" className="grid   grid-cols-2 gap-2">
             <button
               onClick={() => setSelectedPaymentMethod("manual")}
               className={`relative p-2 border rounded-md transition-colors duration-200 max-sm:text-xs cursor-pointer  ${
@@ -76,10 +78,10 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
                 )}
               </button>
             </ToolTipHover>
-          </section>
+          </section> */}
           <section
             id="donatur-form"
-            className="grid max-sm:grid-cols-1 grid-cols-2 items-center max-sm:gap-0 gap-5 mt-5 w-full"
+            className="grid max-sm:grid-cols-1 grid-cols-2 items-center max-sm:gap-0 gap-5 max-sm:mt-0 w-full"
           >
             <div id="qris" className=" p-1 rounded-md  ">
               <Image
@@ -104,22 +106,54 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
             </div>
 
             <form className="flex flex-col gap-3">
-              <div className="max-sm:flex gap-2">
-                <div>
-                  <label className="max-sm:text-sm">Nama/Inisial</label>
-                  <Input className="max-sm:text-xs" placeholder="John" />
+              <div className=" gap-2">
+                <div className="flex md:flex-col gap-2">
+                  <div className="w-1/2 md:w-full">
+                    <label className="text-sm">
+                      Nama <span className="text-red-500">*</span>{" "}
+                    </label>
+                    <Input className="text-xs" placeholder="John" />
+                  </div>
+                  <div className="w-1/2 md:w-full">
+                    <label className="text-sm">
+                      Email <span className="text-red-500">*</span>
+                    </label>
+                    <Input
+                      className="text-xs"
+                      type="email"
+                      placeholder="johndoe@mail.com"
+                    />
+                  </div>
                 </div>
+                <div className="flex  gap-2">
+                  <div className="w-1/2 md:w-full">
+                    <label className="text-sm">Kode Relawan</label>
+                    <Input
+                      className="text-xs uppercase"
+                      placeholder="ABCJO123"
+                    />
+                  </div>
+                  <div className="w-1/2 md:w-full">
+                    <label className="text-sm"> Sub Relawan</label>
+                    <Input
+                      className="text-xs uppercase"
+                      placeholder="JOHN123"
+                    />
+                  </div>
+                </div>
+
                 <div>
-                  <label className="max-sm:text-sm">Email</label>
-                  <Input
-                    className="max-sm:text-xs"
-                    type="email"
-                    placeholder="johndoe@mail.com"
-                  />
+                  <label className="text-sm">Pesan Anda</label>
+                  <Input className="text-xs" placeholder="John" />
                 </div>
               </div>
-              <div>
-                <label className="max-sm:text-sm">Upload Bukti</label>
+              <div className="flex flex-col gap-1">
+                <label className="text-sm">
+                  Upload Bukti<span className="text-red-500">*</span>
+                </label>
+                <span className="text-[10px]">
+                  Maks file 1 MB (.png, .jpg, .jpeg, .pdf)
+                </span>
                 <Input type="file" className="cursor-pointer" />
               </div>
               <Button

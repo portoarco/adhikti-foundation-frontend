@@ -31,17 +31,17 @@ export default function Footer() {
               icon={<Mail className="size-4" />}
             />
             <SocialIcon
-              href="https://instagram.com/adhikti"
+              href="https://www.instagram.com/adhiktifoundation/"
               label="Instagram"
               icon={<Instagram className="size-4" />}
             />
             <SocialIcon
-              href="https://youtube.com/@adhikti"
+              href="https://www.youtube.com/channel/UC3sjWhZIGBBcEek7PYgDVLQ"
               label="YouTube"
               icon={<Youtube className="size-4" />}
             />
             <SocialIcon
-              href="tel:+6288999181282"
+              href="https://wa.me/628811094150"
               label="WhatsApp Center"
               icon={<Phone className="size-4" />}
             />
@@ -51,20 +51,20 @@ export default function Footer() {
         {/* Pages */}
         <div id="pages" className="flex flex-col gap-3">
           <SectionTitle title="Halaman" />
-          <FooterLink href="/tentang">Tentang Kami</FooterLink>
-          <FooterLink href="/kegiatan">Kegiatan</FooterLink>
-          <FooterLink href="/artikel">Artikel</FooterLink>
-          <FooterLink href="/donasi">Donasi</FooterLink>
-          <FooterLink href="/volunteer">Registrasi Volunteer</FooterLink>
+          <FooterLink href="/#about-us">Tentang Kami</FooterLink>
+          <FooterLink href="/#activity">Kegiatan</FooterLink>
+          <FooterLink href="/#impact-story">Artikel</FooterLink>
+          <FooterLink href="/#donation">Donasi</FooterLink>
+          <FooterLink href="/#join-us">Registrasi Volunteer</FooterLink>
         </div>
 
         {/* Community */}
         <div id="community" className="flex flex-col gap-3">
           <SectionTitle title="Komunitas" />
-          <FooterLink href="/komunitas/kidpedia">KidPedia</FooterLink>
-          <FooterLink href="/komunitas/pelitajiwa">Pelita Jiwa</FooterLink>
-          <FooterLink href="/komunitas/adhitizens">Adhitizens</FooterLink>
-          <FooterLink href="/dokumen-hukum">Dokumen Hukum</FooterLink>
+          <FooterLink href="https://kidpedia.my.id/">KidPedia</FooterLink>
+          <FooterLink href="http://pelitajiwa.my.id/">Pelita Jiwa</FooterLink>
+          <FooterLink href="#">Adhiktizens</FooterLink>
+          <FooterLink href="#">Dokumen Hukum</FooterLink>
         </div>
 
         {/* Location */}

@@ -90,7 +90,7 @@ export default function JoinUs() {
           <CardHeader className="text-center pb-0">
             <CardTitle className="text-3xl font-bold text-slate-800">
               Be The Next Gen of{" "}
-              <span className="text-teal-600">Adhitizens</span>
+              <span className="text-teal-600">Adhiktizens</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="md:p-8">
