@@ -6,50 +6,40 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ArrowUpRight, MoveDiagonal, Rocket } from "lucide-react";
+import { Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const impactStories = [
   {
     id: 1,
-    judul: "Ini Bagian Judul Ini Bagian Judul",
-    url: "#",
-    banner: "/assets/protection.jpg",
+    judul:
+      "Pendekatan Holistik dalam Pendampingan Keluarga Terkait Perceraian di Indonesia",
+    downloadUrl:
+      "https://drive.google.com/file/d/1RjNdzT68gZqrXT2deBQlRXMzKDL6v2EV/view?usp=sharing",
+    banner: "/assets/justice.jpg",
     shortdesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores similique odio fuga eveniet inventore expedita officia maxime magni, necessitatibus culpa!",
+      "Pendekatan Holistik dalam Pendampingan Keluarga Terkait Perceraian di Indonesia, menyoroti dampak perceraian pada anak dan remaja, serta memperkenalkan Program SAHABAT sebagai solusi komprehensif untuk mendukung keluarga dan masa depan anak.",
   },
   {
     id: 2,
-    judul: "Ini Bagian Judul",
-    url: "#",
-    banner: "/assets/hero.jpg",
+    judul:
+      "Roadmap for Action on Children Deprived of Liberty (2025–2030) Dalam Konteks Ke-Indonesiaan",
+    downloadUrl:
+      "https://drive.google.com/file/d/1IXaCcP3Mq6JmfTtc0OIftKP5R7RttXF7/view?usp=sharing",
+    banner: "/assets/deprived.jpg",
     shortdesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores similique odio fuga eveniet inventore expedita officia maxime magni, necessitatibus culpa!",
+      "Roadmap for Action on Children Deprived of Liberty (2025-2030) dalam konteks Indonesia sebagai upaya mengurangi penahanan anak dan mempromosikan alternatif berbasis komunitas, selaras dengan hukum Indonesia dan SDGs. Dokumen ini juga menyoroti peran penting masyarakat sipil.",
   },
   {
     id: 3,
-    judul: "Ini Bagian Judul",
-    url: "#",
-    banner: "/assets/protection.jpg",
+    judul:
+      "Program Voluntary Hub Untuk Mendampingi Anak yang berhadapan dengan Hukum dan Masalah Kesehatan Jiwa Pada Remaja",
+    downloadUrl:
+      "https://drive.google.com/file/d/1efevQq95Nhn6b-7CK6xmSV-04n9OEvLz/view?usp=sharing",
+    banner: "/assets/community.jpg",
     shortdesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores similique odio fuga eveniet inventore expedita officia maxime magni, necessitatibus culpa!",
-  },
-  {
-    id: 4,
-    judul: "Ini Bagian Judul",
-    url: "#",
-    banner: "/assets/hero.jpg",
-    shortdesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores similique odio fuga eveniet inventore expedita officia maxime magni, necessitatibus culpa!",
-  },
-  {
-    id: 5,
-    judul: "Ini Bagian Judul",
-    url: "#",
-    banner: "/assets/empathy.jpg",
-    shortdesc:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores similique odio fuga eveniet inventore expedita officia maxime magni, necessitatibus culpa!",
+      "Program Voluntary Hub Adhikti Foundation mengajak masyarakat, mahasiswa, dan relawan muda untuk mendampingi Anak yang Berhadapan dengan Hukum (ABH) dan mengatasi masalah kesehatan jiwa remaja, melalui edukasi, advokasi, dan pemberdayaan sosial.",
   },
 ];
 
@@ -59,11 +49,11 @@ export default function ImpactStories() {
       {/* Header */}
       <div className="text-center mb-16">
         <h1 className="text-3xl md:text-4xl font-semibold text-teal-800">
-          Our Impact Stories
+          Our Articles
         </h1>
         <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto mt-4">
-          Kisah nyata dari anak dan remaja yang telah mendapat dukungan dari
-          Adhikti Foundation
+          Berbagai Artikel yang Telah Kami Publikasikan terkait Pemberdayaan
+          Mental Anak dan Remaja Indonesia
         </p>
       </div>
 
@@ -96,12 +86,12 @@ export default function ImpactStories() {
 
                   {/* Title & button */}
                   <div className="flex items-center justify-between mt-5">
-                    <h2 className="text-2xl font-semibold text-teal-800">
+                    <h2 className="text-xl font-semibold text-teal-800">
                       {story.judul}
                     </h2>
-                    <Link href={story.url}>
+                    <Link href={story.downloadUrl} target="_blank">
                       <div className="bg-gradient-to-r from-teal-500 to-blue-500 p-2 rounded-full hover:from-teal-600 hover:to-blue-600 transition-all duration-300">
-                        <MoveDiagonal className="text-white" size={20} />
+                        <Search className="text-white" size={20} />
                       </div>
                     </Link>
                   </div>

@@ -8,12 +8,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { HandCoins, LogIn } from "lucide-react";
+import { HandCoins } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import DonateDialog from "./DonateDialog";
-import ToolTipHover from "./ToolTipHover";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface IDesktopNavbar {
   className?: string;
@@ -124,6 +124,30 @@ export default function DesktopNavbar({ className }: IDesktopNavbar) {
         </NavigationMenu>
       </div>
       <div id="cta" className="flex items-center gap-5">
+        <ToggleGroup
+          type="single"
+          className="bg-gray-200 dark:bg-gray-700   flex items-center w-[100px] justify-between shadow-md inset-shadow-2xs"
+          defaultValue="id"
+        >
+          <ToggleGroupItem
+            value="id"
+            className="flex-1 text-center py-1  cursor-pointer text-sm font-semibold transition-all duration-300 
+      data-[state=on]:bg-gradient-to-r data-[state=on]:from-teal-500 data-[state=on]:to-emerald-500
+      data-[state=on]:text-white
+      data-[state=off]:text-gray-700 hover:data-[state=off]:bg-gray-300"
+          >
+            ID
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="en"
+            className="flex-1 text-center py-1  cursor-pointer text-sm font-semibold transition-all duration-300 
+      data-[state=on]:bg-gradient-to-r data-[state=on]:from-teal-500 data-[state=on]:to-emerald-500
+      data-[state=on]:text-white
+      data-[state=off]:text-gray-700 hover:data-[state=off]:bg-gray-300"
+          >
+            EN
+          </ToggleGroupItem>
+        </ToggleGroup>
         <Button
           className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 cursor-pointer rounded-full p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex justify-between gap-2 text-white font-semibold"
           onClick={() => setOpenDonate(true)}

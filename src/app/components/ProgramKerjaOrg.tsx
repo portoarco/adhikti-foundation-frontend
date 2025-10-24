@@ -17,14 +17,23 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import * as motion from "motion/react-client";
 
 const photos = [
-  { id: 1, name: "Photo1", picUrl: "/assets/collaboration.jpg" },
-  { id: 2, name: "Photo 2", picUrl: "/assets/hero.jpg" },
-  { id: 3, name: "Photo 3", picUrl: "/assets/empathy.jpg" },
-  { id: 4, name: "Photo 4", picUrl: "/assets/empathy.jpg" },
-  { id: 5, name: "Photo 5", picUrl: "/assets/legal.jpg" },
-  { id: 6, name: "Photo 6", picUrl: "/assets/verbalbully.jpg" },
-  { id: 7, name: "Photo 7", picUrl: "/assets/verbalbully.jpg" },
-  { id: 8, name: "Photo 8", picUrl: "/assets/sexabuse.jpg" },
+  { id: 1, name: "proker-ilustration", picUrl: "/assets/proker/pic1.jpg" },
+  { id: 2, name: "proker-ilustration", picUrl: "/assets/proker/pic2.jpg" },
+  { id: 3, name: "proker-ilustration", picUrl: "/assets/proker/pic3.jpg" },
+  { id: 4, name: "proker-ilustration", picUrl: "/assets/proker/pic4.jpg" },
+  { id: 5, name: "proker-ilustration", picUrl: "/assets/proker/pic5.jpg" },
+  { id: 6, name: "proker-ilustration", picUrl: "/assets/proker/pic6.jpg" },
+  { id: 7, name: "proker-ilustration", picUrl: "/assets/proker/pic7.jpg" },
+  { id: 8, name: "proker-ilustration", picUrl: "/assets/proker/pic8.jpg" },
+  { id: 9, name: "proker-ilustration", picUrl: "/assets/proker/pic9.jpeg" },
+  { id: 10, name: "proker-ilustration", picUrl: "/assets/proker/pic10.jpg" },
+  { id: 11, name: "proker-ilustration", picUrl: "/assets/proker/pic11.jpeg" },
+  { id: 12, name: "proker-ilustration", picUrl: "/assets/proker/pic12.jpeg" },
+  { id: 13, name: "proker-ilustration", picUrl: "/assets/proker/pic13.jpg" },
+  { id: 14, name: "proker-ilustration", picUrl: "/assets/proker/pic14.jpg" },
+  { id: 15, name: "proker-ilustration", picUrl: "/assets/proker/pic15.jpg" },
+  { id: 16, name: "proker-ilustration", picUrl: "/assets/proker/pic16.jpg" },
+  { id: 16, name: "proker-ilustration", picUrl: "/assets/proker/pil4.jpg" },
 ];
 
 export default function ProgramKerjaOrg() {

@@ -1,3 +1,4 @@
+"use client";
 import {
   Accordion,
   AccordionContent,
@@ -8,8 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toastError } from "@/utils/toaster";
+import { isEmailValid } from "@/utils/validator";
 import { HelpCircle, Send } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 
 const faqs = [
   {
@@ -58,6 +63,44 @@ const faqs = [
 ];
 
 export default function FAQ() {
+  const inFullNameRef = useRef<HTMLInputElement>(null);
+  const inPhoneRef = useRef<HTMLInputElement>(null);
+  const inEmailRef = useRef<HTMLInputElement>(null);
+  const inMessageRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleMessage = () => {
+    const payload = {
+      fullName: inFullNameRef.current?.value,
+      phone: inPhoneRef.current?.value,
+      email: inEmailRef.current?.value,
+      message: inMessageRef.current?.value,
+    };
+
+    if (
+      !payload.fullName ||
+      !payload.phone ||
+      !payload.email ||
+      !payload.message
+    )
+      return toastError("Data tidak boleh kosong");
+    if (!isEmailValid(payload.email ?? ""))
+      return toastError("Email Anda Invalid");
+
+    // cp adhikti
+    const phoneTarget = "628811094150";
+    const text = `Halo Admin Adhikti, saya ${payload.fullName} dengan email ${payload.email} ingin bertanya. Berikut pertanyaan saya: ${payload.message}  `;
+    const waLink = `https://wa.me/${phoneTarget}?text=${encodeURIComponent(
+      text
+    )}`;
+    if (!waLink) return alert("There is something error");
+    window.open(waLink, "_blank");
+    // reset
+    if (inFullNameRef.current) inFullNameRef.current.value = "";
+    if (inPhoneRef.current) inPhoneRef.current.value = "";
+    if (inEmailRef.current) inEmailRef.current.value = "";
+    if (inMessageRef.current) inMessageRef.current.value = "";
+  };
+
   return (
     <section className="px-4 md:px-10 py-12 " id="faq">
       <div className="text-center mb-12">
@@ -79,7 +122,7 @@ export default function FAQ() {
             type="single"
             collapsible
             className="w-full space-y-4"
-            defaultValue="item-1"
+            defaultValue="item-0"
           >
             {faqs.map((f) => (
               <AccordionItem
@@ -112,22 +155,35 @@ export default function FAQ() {
                   <label htmlFor="name" className="block text-sm font-medium">
                     Nama Lengkap
                   </label>
-                  <Input id="name" placeholder="John Doe" />
+                  <Input
+                    id="name"
+                    placeholder="John Doe"
+                    autoComplete="off"
+                    ref={inFullNameRef}
+                  />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium">
                     No Telp/WA Aktif
                   </label>
-                  <Input id="phone" type="tel" placeholder="628123456" />
+                  <Input
+                    autoComplete="off"
+                    id="phone"
+                    type="number"
+                    placeholder="628123456"
+                    ref={inPhoneRef}
+                  />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium">
                     Email Aktif
                   </label>
                   <Input
+                    autoComplete="off"
                     id="email"
                     type="email"
                     placeholder="johndoe@mail.com"
+                    ref={inEmailRef}
                   />
                 </div>
                 <div>
@@ -137,11 +193,17 @@ export default function FAQ() {
                   >
                     Pesan Anda
                   </label>
-                  <Textarea id="message" placeholder="Masukkan Pesan Anda" />
+                  <Textarea
+                    autoComplete="off"
+                    id="message"
+                    placeholder="Masukkan Pesan Anda"
+                    ref={inMessageRef}
+                  />
                 </div>
                 <Button
-                  type="submit"
-                  className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 w-3/4 mx-auto py-3 text-lg font-semibold text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                  type="button"
+                  className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 w-3/4 mx-auto py-3 text-lg font-semibold text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                  onClick={handleMessage}
                 >
                   <Send className="mr-2 size-5" />
                   Kirim Pesan

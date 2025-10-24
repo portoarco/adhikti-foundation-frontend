@@ -4,10 +4,15 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { CalendarCheck, Headset } from "lucide-react";
+import Link from "next/link";
+import ToolTipHover from "./ToolTipHover";
 
 export default function ConsultCTABanner() {
   return (
-    <section className="relative w-full overflow-hidden lg:rounded-3xl bg-gradient-to-br from-teal-50 via-white to-emerald-50 lg:shadow-xl py-16 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10">
+    <section
+      className="relative w-full overflow-hidden lg:rounded-3xl bg-gradient-to-br from-teal-50 via-white to-emerald-50 lg:shadow-xl py-16 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10"
+      id="consultation"
+    >
       {/* Background accent glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-10 -left-10 w-72 h-72 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" />
@@ -32,15 +37,34 @@ export default function ConsultCTABanner() {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-7 pt-4">
-          <Button className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 px-8 py-6 text-lg font-semibold text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-            <CalendarCheck className="size-5" /> Booking Sesi
-          </Button>
-          <Button
-            variant="outline"
-            className="border-2 border-teal-500 text-teal-600 hover:bg-teal-50 px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 cursor-pointer"
-          >
-            <Headset className="size-5" /> Hubungi Kami
-          </Button>
+          <ToolTipHover label="Sesi Belum Tersedia">
+            <Button
+              className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 px-8 py-6 text-lg font-semibold text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              disabled
+            >
+              <CalendarCheck className="size-5" /> Booking Sesi
+            </Button>
+          </ToolTipHover>
+          <div className="flex gap-1 md:gap-2">
+            <Link href=" https://wa.me/6281213113182">
+              {/* a/n Bonike I Mustaqiem */}
+              <Button
+                variant="outline"
+                className="border-2 border-teal-500 text-teal-600 hover:bg-teal-50 px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 cursor-pointer"
+              >
+                <Headset className="size-5" /> CP Bonike
+              </Button>
+            </Link>
+            <Link href=" https://wa.me/6281282586558">
+              {/* a/n Reza */}
+              <Button
+                variant="outline"
+                className="border-2 border-teal-500 text-teal-600 hover:bg-teal-50 px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 cursor-pointer"
+              >
+                <Headset className="size-5" /> CP Reza
+              </Button>
+            </Link>
+          </div>
         </div>
       </motion.div>
 
@@ -53,7 +77,7 @@ export default function ConsultCTABanner() {
         className="relative w-full lg:w-2/5 aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
       >
         <Image
-          src="/assets/empathy.jpg"
+          src="/assets/consultation.jpg"
           alt="Ilustrasi konsultasi"
           fill
           priority
