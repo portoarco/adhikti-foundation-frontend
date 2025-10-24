@@ -31,17 +31,17 @@ export default function Footer() {
               icon={<Mail className="size-4" />}
             />
             <SocialIcon
-              href="https://instagram.com/adhikti"
+              href="https://www.instagram.com/adhiktifoundation/"
               label="Instagram"
               icon={<Instagram className="size-4" />}
             />
             <SocialIcon
-              href="https://youtube.com/@adhikti"
+              href="https://www.youtube.com/channel/UC3sjWhZIGBBcEek7PYgDVLQ"
               label="YouTube"
               icon={<Youtube className="size-4" />}
             />
             <SocialIcon
-              href="tel:+6288999181282"
+              href="https://wa.me/628811094150"
               label="WhatsApp Center"
               icon={<Phone className="size-4" />}
             />
