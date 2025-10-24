@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import DonateDialog from "./DonateDialog";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface IMobileNavbar {
   className?: string;
@@ -44,14 +45,14 @@ const navMenu = [
       },
       {
         id: 3,
-        subName: "Adhitizens",
-        href: "#",
+        subName: "Adhiktizens",
+        href: "/adhiktizens",
         description: "Berkenalan lebih dekat dengan anggota kami",
       },
       {
         id: 4,
         subName: "Dokumen Hukum",
-        href: "#",
+        href: "/dokumen-hukum",
         description: "Dokumen dan kebijakan organisasi",
       },
     ],
@@ -80,14 +81,43 @@ export default function MobileNavbar({ className }: IMobileNavbar) {
             <Image src="/logo.png" alt="comp-logo" width={60} height={60} />
           </Link>
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="hover:bg-teal-100 text-teal-600 transition-all duration-300"
-          onClick={() => setOpen((prev) => !prev)}
-        >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </Button>
+
+        <div className="flex">
+          <div id="toggle-language">
+            <ToggleGroup
+              type="single"
+              className="bg-gray-200 dark:bg-gray-700   flex items-center w-[100px] justify-between shadow-md inset-shadow-2xs"
+              defaultValue="id"
+            >
+              <ToggleGroupItem
+                value="id"
+                className="flex-1 text-center py-1  cursor-pointer text-sm font-semibold transition-all duration-300 
+      data-[state=on]:bg-gradient-to-r data-[state=on]:from-teal-500 data-[state=on]:to-emerald-500
+      data-[state=on]:text-white
+      data-[state=off]:text-gray-700 hover:data-[state=off]:bg-gray-300"
+              >
+                ID
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="en"
+                className="flex-1 text-center py-1  cursor-pointer text-sm font-semibold transition-all duration-300 
+      data-[state=on]:bg-gradient-to-r data-[state=on]:from-teal-500 data-[state=on]:to-emerald-500
+      data-[state=on]:text-white
+      data-[state=off]:text-gray-700 hover:data-[state=off]:bg-gray-300"
+              >
+                EN
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hover:bg-teal-100 text-teal-600 transition-all duration-300"
+            onClick={() => setOpen((prev) => !prev)}
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </Button>
+        </div>
       </nav>
 
       {open && (

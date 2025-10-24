@@ -53,14 +53,14 @@ const navMenu = [
       },
       {
         id: 3,
-        subName: "Adhitizens",
-        href: "#",
+        subName: "Adhiktizens",
+        href: "/adhiktizens",
         description: "Berkenalan lebih dekat dengan anggota kami",
       },
       {
         id: 4,
         subName: "Dokumen Hukum",
-        href: "#",
+        href: "/dokumen-hukum",
         description: "Dokumen dan kebijakan organisasi",
       },
     ],

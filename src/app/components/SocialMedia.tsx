@@ -6,14 +6,14 @@ const socialMediaData = [
   {
     id: 1,
     type: "YouTube",
-    title: "Video Kegiatan Terbaru",
+    title: "Video Edukatif Kami",
     embedUrl: "https://www.youtube.com/embed/on9cbuigDaY?si=ZFOlaOhRdfMiJbBo",
     color: "from-red-500 to-rose-400",
   },
   {
     id: 2,
     type: "Instagram",
-    title: "Feed Instagram",
+    title: "Media Edukatif Kami",
     embedUrl:
       "https://www.instagram.com/reel/DNC8-PfPF0Y/?utm_source=ig_embed&utm_campaign=loading",
     color: "from-pink-400 to-fuchsia-400",
@@ -21,7 +21,7 @@ const socialMediaData = [
   {
     id: 3,
     type: "TikTok",
-    title: "Video TikTok Keren",
+    title: "Sarana Edukatif dan Informatif",
     embedUrl: "https://www.tiktok.com/@adhikti.foundatio?refer=creator_embed",
     color: "from-amber-400 to-orange-400",
   },
@@ -57,7 +57,7 @@ export default function SocialMedia() {
         tentang anak dan remaja Indonesia.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
         {socialMediaData.map((item) => (
           <div
             key={item.id}
@@ -69,7 +69,7 @@ export default function SocialMedia() {
               {item.type}: {item.title}
             </h3>
 
-            <div className="relative w-full overflow-hidden rounded-b-xl h-125">
+            <div className="relative w-full overflow-hidden rounded-b-xl h-85 lg:h-100 xl:h-125">
               {item.type === "YouTube" ? (
                 <div className="relative pb-[56.25%] h-full">
                   <iframe
@@ -82,7 +82,7 @@ export default function SocialMedia() {
                   />
                 </div>
               ) : item.type === "Instagram" ? (
-                <div className="relative w-full">
+                <div className="relative w-full h-full">
                   <blockquote
                     className="instagram-media w-full"
                     data-instgrm-permalink={item.embedUrl}
