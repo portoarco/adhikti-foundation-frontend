@@ -51,11 +51,11 @@ export default function Footer() {
         {/* Pages */}
         <div id="pages" className="flex flex-col gap-3">
           <SectionTitle title="Halaman" />
-          <FooterLink href="#about-us">Tentang Kami</FooterLink>
-          <FooterLink href="#activity">Kegiatan</FooterLink>
-          <FooterLink href="#impact-story">Artikel</FooterLink>
-          <FooterLink href="#donation">Donasi</FooterLink>
-          <FooterLink href="#join-us">Registrasi Volunteer</FooterLink>
+          <FooterLink href="/#about-us">Tentang Kami</FooterLink>
+          <FooterLink href="/#activity">Kegiatan</FooterLink>
+          <FooterLink href="/#impact-story">Artikel</FooterLink>
+          <FooterLink href="/#donation">Donasi</FooterLink>
+          <FooterLink href="/#join-us">Registrasi Volunteer</FooterLink>
         </div>
 
         {/* Community */}
@@ -63,7 +63,7 @@ export default function Footer() {
           <SectionTitle title="Komunitas" />
           <FooterLink href="https://kidpedia.my.id/">KidPedia</FooterLink>
           <FooterLink href="http://pelitajiwa.my.id/">Pelita Jiwa</FooterLink>
-          <FooterLink href="#">Adhitizens</FooterLink>
+          <FooterLink href="#">Adhiktizens</FooterLink>
           <FooterLink href="#">Dokumen Hukum</FooterLink>
         </div>
 

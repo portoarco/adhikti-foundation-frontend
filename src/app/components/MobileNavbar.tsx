@@ -15,17 +15,17 @@ const navMenu = [
   {
     id: 1,
     name: "Tentang Kami",
-    href: "#about-us",
+    href: "/#about-us",
   },
   {
     id: 2,
     name: "Kegiatan",
-    href: "#activity",
+    href: "/#activity",
   },
   {
     id: 3,
     name: "Artikel",
-    href: "#impact-story",
+    href: "/#impact-story",
   },
   {
     id: 4,
