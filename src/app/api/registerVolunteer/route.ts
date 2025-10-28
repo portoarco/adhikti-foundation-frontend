@@ -20,10 +20,21 @@ export async function POST(req: Request) {
 
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "questions!A1:D1",
+      range: "new_volunteer!A1:G1",
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[body.fullName, body.phone, body.email, body.message]],
+        values: [
+          [
+            body.registerDate,
+            body.fullName,
+            body.nickName,
+            body.phone,
+            body.email,
+            body.city,
+            body.job,
+            body.reason,
+          ],
+        ],
       },
     });
 

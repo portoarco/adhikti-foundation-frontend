@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toastError, toastSuccess } from "@/utils/toaster";
+import { isEmailValid } from "@/utils/validator";
 import { Check, Send } from "lucide-react";
 import { motion } from "motion/react";
+import { useRef } from "react";
 
 const benefits = [
   { id: 1, desc: "Relasi dan Koneksi" },
@@ -15,6 +18,79 @@ const benefits = [
 ];
 
 export default function JoinUs() {
+  const inFullNameRef = useRef<HTMLInputElement>(null);
+  const inNickNameRef = useRef<HTMLInputElement>(null);
+  const inPhoneRef = useRef<HTMLInputElement>(null);
+  const inEmailRef = useRef<HTMLInputElement>(null);
+  const inCityRef = useRef<HTMLInputElement>(null);
+  const inJobRef = useRef<HTMLInputElement>(null);
+  const inReasonRef = useRef<HTMLTextAreaElement>(null);
+
+  const handlerRegister = async () => {
+    try {
+      const payload = {
+        registerDate: new Date().toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }),
+        fullName: inFullNameRef.current?.value,
+        nickName: inNickNameRef.current?.value,
+        phone: inPhoneRef.current?.value,
+        email: inEmailRef.current?.value,
+        city: inCityRef.current?.value,
+        job: inJobRef.current?.value,
+        reason: inReasonRef.current?.value,
+      };
+      if (
+        !payload.fullName ||
+        !payload.nickName ||
+        !payload.phone ||
+        !payload.email ||
+        !payload.city ||
+        !payload.job ||
+        !payload.reason
+      ) {
+        return toastError("Data tidak boleh kosong!");
+      }
+      if (!isEmailValid(payload.email ?? "")) {
+        return toastError("Email anda Invalid!");
+      }
+
+      // kalau data sesuai, send to API Spreadsheets
+      await fetch("/api/registerVolunteer", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      // cp adhikti
+      const phoneTarget = "628811094150";
+      const text = `Halo Admin Adhikti, saya ${payload.nickName} dengan email ${payload.email} telah mendaftar sebagai Volunteer! `;
+      const waLink = `https://wa.me/${phoneTarget}?text=${encodeURIComponent(
+        text
+      )}`;
+      if (!waLink) return alert("There is something error");
+      window.open(waLink, "_blank");
+      // // reset data
+      if (inFullNameRef.current) inFullNameRef.current.value = "";
+      if (inNickNameRef.current) inNickNameRef.current.value = "";
+      if (inPhoneRef.current) inPhoneRef.current.value = "";
+      if (inEmailRef.current) inEmailRef.current.value = "";
+      if (inCityRef.current) inCityRef.current.value = "";
+      if (inJobRef.current) inJobRef.current.value = "";
+      if (inReasonRef.current) inReasonRef.current.value = "";
+
+      toastSuccess("Anda Berhasil Terdaftar!");
+    } catch (error) {
+      console.log(error);
+      toastError("There is something wrong!");
+    }
+  };
+
   return (
     <section
       id="join-us"
@@ -103,6 +179,7 @@ export default function JoinUs() {
                   <Input
                     placeholder="Masukkan Nama Lengkap"
                     className="max-sm:text-sm"
+                    ref={inFullNameRef}
                   />
                 </div>
                 <div className="w-1/2 max-sm:w-full lg:w-full">
@@ -112,6 +189,7 @@ export default function JoinUs() {
                   <Input
                     placeholder="Masukkan Nama Panggilan"
                     className="max-sm:text-sm "
+                    ref={inNickNameRef}
                   />
                 </div>
               </div>
@@ -125,6 +203,7 @@ export default function JoinUs() {
                     type="number"
                     placeholder="6281239123"
                     className="max-sm:text-sm"
+                    ref={inPhoneRef}
                   />
                 </div>
                 <div className="w-1/2 max-sm:w-full lg:w-full">
@@ -135,6 +214,7 @@ export default function JoinUs() {
                     type="email"
                     placeholder="johndoe@mail.com"
                     className="max-sm:text-sm"
+                    ref={inEmailRef}
                   />
                 </div>
               </div>
@@ -144,13 +224,21 @@ export default function JoinUs() {
                   <label className="text-slate-700 text-sm font-medium">
                     Asal Kota
                   </label>
-                  <Input placeholder="Jakarta" className="max-sm:text-sm" />
+                  <Input
+                    placeholder="Jakarta"
+                    className="max-sm:text-sm"
+                    ref={inCityRef}
+                  />
                 </div>
                 <div className="w-full">
                   <label className="text-slate-700 text-sm font-medium">
                     Profesi
                   </label>
-                  <Input placeholder="Mahasiswa" className="max-sm:text-sm" />
+                  <Input
+                    placeholder="Mahasiswa"
+                    className="max-sm:text-sm"
+                    ref={inJobRef}
+                  />
                 </div>
               </div>
               <div>
@@ -160,10 +248,15 @@ export default function JoinUs() {
                 <Textarea
                   placeholder="Masukkan jawaban Anda"
                   className="max-sm:text-sm"
+                  ref={inReasonRef}
                 />
               </div>
 
-              <Button className="bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-700 hover:to-sky-700 text-white mt-2 font-semibold shadow-md w-1/4 max-sm:w-full lg:w-full py-5 cursor-pointer">
+              <Button
+                className="bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-700 hover:to-sky-700 text-white mt-2 font-semibold shadow-md w-1/4 max-sm:w-full lg:w-full py-5 cursor-pointer"
+                onClick={handlerRegister}
+                type="button"
+              >
                 <Send /> Submit Data
               </Button>
             </form>
