@@ -24,6 +24,7 @@
     "embla-carousel-class-names": "^8.6.0",
     "embla-carousel-fade": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "googleapis": "^164.1.0",
     "lucide-react": "^0.544.0",
     "motion": "^12.23.22",
     "next": "15.5.4",
