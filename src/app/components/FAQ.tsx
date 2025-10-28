@@ -68,37 +68,51 @@ export default function FAQ() {
   const inEmailRef = useRef<HTMLInputElement>(null);
   const inMessageRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleMessage = () => {
-    const payload = {
-      fullName: inFullNameRef.current?.value,
-      phone: inPhoneRef.current?.value,
-      email: inEmailRef.current?.value,
-      message: inMessageRef.current?.value,
-    };
+  const handleMessage = async () => {
+    try {
+      const payload = {
+        fullName: inFullNameRef.current?.value,
+        phone: inPhoneRef.current?.value,
+        email: inEmailRef.current?.value,
+        message: inMessageRef.current?.value,
+      };
 
-    if (
-      !payload.fullName ||
-      !payload.phone ||
-      !payload.email ||
-      !payload.message
-    )
-      return toastError("Data tidak boleh kosong");
-    if (!isEmailValid(payload.email ?? ""))
-      return toastError("Email Anda Invalid");
+      if (
+        !payload.fullName ||
+        !payload.phone ||
+        !payload.email ||
+        !payload.message
+      )
+        return toastError("Data tidak boleh kosong");
+      if (!isEmailValid(payload.email ?? ""))
+        return toastError("Email Anda Invalid");
 
-    // cp adhikti
-    const phoneTarget = "628811094150";
-    const text = `Halo Admin Adhikti, saya ${payload.fullName} dengan email ${payload.email} ingin bertanya. Berikut pertanyaan saya: ${payload.message}  `;
-    const waLink = `https://wa.me/${phoneTarget}?text=${encodeURIComponent(
-      text
-    )}`;
-    if (!waLink) return alert("There is something error");
-    window.open(waLink, "_blank");
-    // reset
-    if (inFullNameRef.current) inFullNameRef.current.value = "";
-    if (inPhoneRef.current) inPhoneRef.current.value = "";
-    if (inEmailRef.current) inEmailRef.current.value = "";
-    if (inMessageRef.current) inMessageRef.current.value = "";
+      // kalo data aman kirim ke API Spreadsheets
+      await fetch("/api/submitQuestions", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      // cp adhikti
+      const phoneTarget = "628811094150";
+      const text = `Halo Admin Adhikti, saya ${payload.fullName} dengan email ${payload.email} ingin bertanya. Berikut pertanyaan saya: ${payload.message}  `;
+      const waLink = `https://wa.me/${phoneTarget}?text=${encodeURIComponent(
+        text
+      )}`;
+      if (!waLink) return alert("There is something error");
+      window.open(waLink, "_blank");
+      // reset
+      if (inFullNameRef.current) inFullNameRef.current.value = "";
+      if (inPhoneRef.current) inPhoneRef.current.value = "";
+      if (inEmailRef.current) inEmailRef.current.value = "";
+      if (inMessageRef.current) inMessageRef.current.value = "";
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -160,6 +174,12 @@ export default function FAQ() {
                     placeholder="John Doe"
                     autoComplete="off"
                     ref={inFullNameRef}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleMessage();
+                      }
+                    }}
                   />
                 </div>
                 <div>
@@ -172,6 +192,12 @@ export default function FAQ() {
                     type="number"
                     placeholder="628123456"
                     ref={inPhoneRef}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleMessage();
+                      }
+                    }}
                   />
                 </div>
                 <div>
@@ -184,6 +210,12 @@ export default function FAQ() {
                     type="email"
                     placeholder="johndoe@mail.com"
                     ref={inEmailRef}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleMessage();
+                      }
+                    }}
                   />
                 </div>
                 <div>
