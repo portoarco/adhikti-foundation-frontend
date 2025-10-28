@@ -68,8 +68,8 @@ export default function DokumenHukumPage() {
           Dokumen Hukum Adhikti Foundation
         </h1>
         <p className="text-gray-600 mt-4 text-xs md:text-lg max-w-4xl mx-auto">
-          Anda dapat mengakses berbagai dokumen hukum dan kebijakan privasi
-          sebagai komitmen hukum organisasi yang legal di Indonesia
+          Komitmen kami pada transparansi dan kepatuhan legalitas hukum
+          organisasi
         </p>
       </div>
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-5">
