@@ -7,12 +7,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Check, CircleX, Send, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ToolTipHover from "./ToolTipHover";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { isEmailValid } from "@/utils/validator";
+import { toastError } from "@/utils/toaster";
 
 interface IDonateDialog {
   open: boolean;
@@ -24,9 +26,41 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
     "manual" | "auto" | null
   >(null);
 
+  const inDonaturNameRef = useRef<HTMLInputElement>(null);
+  const inEmailRef = useRef<HTMLInputElement>(null);
+  const inRelawanCodeRef = useRef<HTMLInputElement>(null);
+  const inSubRelawanCodeRef = useRef<HTMLInputElement>(null);
+  const inMessageRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     setSelectedPaymentMethod("manual");
   }, []);
+
+  const handlerSubmit = () => {
+    const namaDonatur = inDonaturNameRef.current?.value;
+    const email = inEmailRef.current?.value;
+    const kode_relawan = inRelawanCodeRef.current?.value;
+    const kode_subRelawan = inSubRelawanCodeRef.current?.value;
+    const message = inMessageRef.current?.value;
+
+    if (!namaDonatur) return toastError("Harap isi Nama Anda");
+    if (!email) return toastError("Harap isi Email Anda");
+    if (!isEmailValid(email)) return toastError("Email Anda tidak Valid");
+
+    const payload = {
+      namaDonatur,
+      email,
+      kode_relawan,
+      kode_subRelawan,
+      message,
+    };
+    console.log(payload);
+    try {
+    } catch (error) {
+      console.log(error);
+      alert("There is something wrong!");
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -112,7 +146,11 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
                     <label className="text-sm">
                       Nama <span className="text-red-500">*</span>{" "}
                     </label>
-                    <Input className="text-xs" placeholder="John" />
+                    <Input
+                      className="text-xs"
+                      placeholder="John"
+                      ref={inDonaturNameRef}
+                    />
                   </div>
                   <div className="w-1/2 md:w-full">
                     <label className="text-sm">
@@ -122,6 +160,7 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
                       className="text-xs"
                       type="email"
                       placeholder="johndoe@mail.com"
+                      ref={inEmailRef}
                     />
                   </div>
                 </div>
@@ -131,6 +170,7 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
                     <Input
                       className="text-xs uppercase"
                       placeholder="ABCJO123"
+                      ref={inRelawanCodeRef}
                     />
                   </div>
                   <div className="w-1/2 md:w-full">
@@ -138,13 +178,18 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
                     <Input
                       className="text-xs uppercase"
                       placeholder="JOHN123"
+                      ref={inSubRelawanCodeRef}
                     />
                   </div>
                 </div>
 
                 <div>
                   <label className="text-sm">Pesan Anda</label>
-                  <Input className="text-xs" placeholder="John" />
+                  <Input
+                    className="text-xs"
+                    placeholder="John"
+                    ref={inMessageRef}
+                  />
                 </div>
               </div>
               <div className="flex flex-col gap-1">
@@ -154,11 +199,12 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
                 <span className="text-[10px]">
                   Maks file 1 MB (.png, .jpg, .jpeg, .pdf)
                 </span>
-                <Input type="file" className="cursor-pointer" />
+                <Input type="file" className="cursor-pointer text-sm" />
               </div>
               <Button
                 type="button"
                 className="bg-teal-600 hover:bg-teal-700 cursor-pointer"
+                onClick={() => handlerSubmit()}
               >
                 <Send /> Konfirmasi
               </Button>
