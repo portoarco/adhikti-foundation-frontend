@@ -3,12 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import { toastError, toastSuccess } from "@/utils/toaster";
 import { isEmailValid } from "@/utils/validator";
 import { Check, Send } from "lucide-react";
 import { motion } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const benefits = [
   { id: 1, desc: "Relasi dan Koneksi" },
@@ -25,9 +26,12 @@ export default function JoinUs() {
   const inCityRef = useRef<HTMLInputElement>(null);
   const inJobRef = useRef<HTMLInputElement>(null);
   const inReasonRef = useRef<HTMLTextAreaElement>(null);
+  //
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   const handlerRegister = async () => {
     try {
+      setSubmitLoading(true);
       const payload = {
         registerDate: new Date().toLocaleString("id-ID", {
           day: "numeric",
@@ -55,10 +59,14 @@ export default function JoinUs() {
         !payload.job ||
         !payload.reason
       ) {
-        return toastError("Data tidak boleh kosong!");
+        toastError("Data tidak boleh kosong!");
+
+        return;
       }
       if (!isEmailValid(payload.email ?? "")) {
-        return toastError("Email anda Invalid!");
+        toastError("Email anda Invalid!");
+
+        return;
       }
 
       // kalau data sesuai, send to API Spreadsheets
@@ -88,10 +96,13 @@ export default function JoinUs() {
       if (inJobRef.current) inJobRef.current.value = "";
       if (inReasonRef.current) inReasonRef.current.value = "";
 
+      setSubmitLoading(false);
       toastSuccess("Anda Berhasil Terdaftar!");
     } catch (error) {
       console.log(error);
       toastError("There is something wrong!");
+    } finally {
+      setSubmitLoading(false);
     }
   };
 
@@ -259,9 +270,20 @@ export default function JoinUs() {
               <Button
                 className="bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-700 hover:to-sky-700 text-white mt-2 font-semibold shadow-md w-1/4 max-sm:w-full lg:w-full py-5 cursor-pointer"
                 onClick={handlerRegister}
+                disabled={submitLoading}
                 type="button"
               >
-                <Send /> Submit Data
+                {submitLoading ? (
+                  <div className="flex items-center gap-2">
+                    <Spinner />
+                    <span>Memproses...</span>
+                  </div>
+                ) : (
+                  <div className="flex gap-3 items-center">
+                    <Send />
+                    <span>Daftar Volunteer</span>
+                  </div>
+                )}
               </Button>
             </form>
           </CardContent>
