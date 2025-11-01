@@ -29,10 +29,14 @@ export default function JoinUs() {
   const handlerRegister = async () => {
     try {
       const payload = {
-        registerDate: new Date().toLocaleDateString("id-ID", {
+        registerDate: new Date().toLocaleString("id-ID", {
           day: "numeric",
           month: "long",
           year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
         }),
         fullName: inFullNameRef.current?.value,
         nickName: inNickNameRef.current?.value,

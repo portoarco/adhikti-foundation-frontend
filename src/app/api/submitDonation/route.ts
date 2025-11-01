@@ -20,19 +20,18 @@ export async function POST(req: Request) {
 
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "new_volunteer!A1:H1",
+      range: "donation_manual_proof!A1:G1",
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [
           [
-            body.registerDate,
-            body.fullName,
-            body.nickName,
-            body.phone,
+            body.dateSubmission,
+            body.namaDonatur,
             body.email,
-            body.city,
-            body.job,
-            body.reason,
+            body.kode_relawan,
+            body.kode_subRelawan,
+            body.message,
+            body.fileUrl,
           ],
         ],
       },
