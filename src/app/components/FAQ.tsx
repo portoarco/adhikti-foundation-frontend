@@ -8,12 +8,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import { toastError } from "@/utils/toaster";
 import { isEmailValid } from "@/utils/validator";
 import { HelpCircle, Send } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 const faqs = [
@@ -63,6 +64,7 @@ const faqs = [
 ];
 
 export default function FAQ() {
+  const [submitLoading, setSubmitLoading] = useState(false);
   const inFullNameRef = useRef<HTMLInputElement>(null);
   const inPhoneRef = useRef<HTMLInputElement>(null);
   const inEmailRef = useRef<HTMLInputElement>(null);
@@ -70,6 +72,7 @@ export default function FAQ() {
 
   const handleMessage = async () => {
     try {
+      setSubmitLoading(true);
       const payload = {
         fullName: inFullNameRef.current?.value,
         phone: inPhoneRef.current?.value,
@@ -112,6 +115,8 @@ export default function FAQ() {
       if (inMessageRef.current) inMessageRef.current.value = "";
     } catch (error) {
       console.log(error);
+    } finally {
+      setSubmitLoading(false);
     }
   };
 
@@ -236,9 +241,19 @@ export default function FAQ() {
                   type="button"
                   className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 w-3/4 mx-auto py-3 text-lg font-semibold text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
                   onClick={handleMessage}
+                  disabled={submitLoading}
                 >
-                  <Send className="mr-2 size-5" />
-                  Kirim Pesan
+                  {submitLoading ? (
+                    <div className="flex items-center gap-2">
+                      <Spinner />
+                      <span>Mengirim pesan ...</span>
+                    </div>
+                  ) : (
+                    <div className="flex gap-3 items-center">
+                      <Send className="mr-2 size-5" />
+                      <span> Kirim Pesan</span>
+                    </div>
+                  )}
                 </Button>
               </form>
             </CardContent>
