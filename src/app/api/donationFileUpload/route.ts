@@ -13,18 +13,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const file = formData.get("file") as File | null;
     const folderName = formData.get("folderName") as string;
     if (!file) {
-      return NextResponse.json({ error: "File not found" }, { status: 400 });
+      return NextResponse.json({ error: "File not found" }, { status: 404 });
+    }
+    const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+    if (!allowedTypes.includes(file.type)) {
+      throw new Error("EXTENSION_NOT_ALLOWED");
     }
 
     // max file size 1 MB
     const MAX_SIZE = 1 * 1024 * 1024;
     if (file.size > MAX_SIZE) {
-      return NextResponse.json(
-        {
-          error: "Ukuran File melebihi 1MB",
-        },
-        { status: 413 }
-      );
+      throw new Error("FILE_TOO_LARGE");
     }
 
     const bytes = await file.arrayBuffer();
@@ -32,7 +31,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const isPdf = file.type === "application/pdf" || file.name.endsWith(".pdf");
 
-    const res = await new Promise<any>((res, rej) => {
+    const uploadResult = await new Promise<any>((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder: folderName,
@@ -41,18 +40,22 @@ export async function POST(req: NextRequest, res: NextResponse) {
           format: isPdf ? "jpg" : undefined,
         },
         (error, result) => {
-          if (error) rej(error);
-          else res(result as any);
+          if (error) reject(error);
+          else resolve(result as any);
         }
       );
       uploadStream.end(buffer);
     });
 
     return NextResponse.json(
-      { message: "File successfuly uploaded!", res },
+      { message: "File successfuly uploaded!", uploadResult },
       { status: 200 }
     );
   } catch (error) {
-    NextResponse.json({ message: "Upload File Error", statusCode: 500 });
+    return NextResponse.json({
+      message: "Upload File Error",
+      error: (error as Error).message,
+      statusCode: 500,
+    });
   }
 }

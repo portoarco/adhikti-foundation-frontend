@@ -36,6 +36,7 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
       if (file) {
         setUploadFile(file);
       }
+      console.log(file);
     } catch (error) {
       console.log(error);
     }
@@ -96,14 +97,24 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
         }
       );
       // handle cloudinary error
+      if (resData.error === "EXTENSION_NOT_ALLOWED") {
+        toastError("Format File Tidak Didukung");
+        setConfirmDonationLoading(false);
+        return;
+      }
+      if (resData.error === "FILE_TOO_LARGE") {
+        toastError("Ukuran File Terlalu Besar");
+        setConfirmDonationLoading(false);
+        return;
+      }
       if (resData.error) {
         toastError("Error Upload File");
         setConfirmDonationLoading(false);
         return;
       }
 
-      // handle cloudinary sucess
-      fileUrl = resData.res.secure_url;
+      // handle cloudinary success
+      fileUrl = resData.uploadResult.secure_url;
       setFileUrl(fileUrl);
       //
 
@@ -144,9 +155,9 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
       setConfirmDonationLoading(false);
       setOpen(false);
       toastSuccess("Terima kasih telah berdonasi 🫶 ");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
-      alert("There is something wrong!");
+      toastError("There is something wrong!");
       setConfirmDonationLoading(false);
     }
   };
@@ -286,7 +297,7 @@ export default function DonateDialog({ open, setOpen }: IDonateDialog) {
                   Upload Bukti<span className="text-red-500">*</span>
                 </label>
                 <span className="text-[10px]">
-                  Maks file 1 MB (.png, .jpg, .jpeg, .pdf)
+                  Maks file 1 MB (.png, .jpg, .jpeg)
                 </span>
                 <Input
                   type="file"
